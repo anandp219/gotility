@@ -2,6 +2,7 @@ package gotility
 
 import (
 	"regexp"
+	"strings"
 )
 
 const (
@@ -31,4 +32,10 @@ func IsEmail (str string) bool {
 func IsUrl (str string) bool {
 	var validEmail = regexp.MustCompile(URL_REGEX)
 	return validEmail.MatchString(str)
+}
+
+func IsTitleCase (str string) bool {
+	titleCase := strings.Title(str)
+	result := strings.Compare(str, titleCase)
+	return result == 0
 }
