@@ -39,3 +39,27 @@ func IsTitleCase (str string) bool {
 	result := strings.Compare(str, titleCase)
 	return result == 0
 }
+
+func FlattenFloat64 (matrix [][]float64) []float64 {
+	row := []float64{}
+	for _,value := range matrix {
+		row = append(row, value...)
+	}
+	return row
+}
+
+func FlattenInt (matrix [][]int) []int {
+	row := []int{}
+	for _,value := range matrix {
+		row = append(row, value...)
+	}
+	return row
+}
+
+func FlattenString (matrix [][]string) []string {
+	row := []string{}
+	for _,value := range matrix {
+		row = append(row, value...)
+	}
+	return row
+}
