@@ -61,7 +61,7 @@ func FlattenString(matrix [][]string) []string {
 func ToMatrixInt(row []int, numRows int) ([][]int, error) {
 	length := len(row)
 	if numRows <= 0 || length%numRows != 0 {
-		return nil, errors.New(fmt.Sprintf("divison of row to matrix not possible. Invalid numRows : %d ", numRows))
+		return nil, errors.New(fmt.Sprintf("division of row to matrix not possible. Invalid numRows : %d ", numRows))
 	}
 	numCols := length / numRows
 	matrix := make([][]int, numRows)
@@ -75,7 +75,7 @@ func ToMatrixInt(row []int, numRows int) ([][]int, error) {
 func ToMatrixString(row []string, numRows int) ([][]string, error) {
 	length := len(row)
 	if numRows <= 0 || length%numRows != 0 {
-		return nil, errors.New(fmt.Sprintf("divison of row to matrix not possible. Invalid numRows : %d ", numRows))
+		return nil, errors.New(fmt.Sprintf("division of row to matrix not possible. Invalid numRows : %d ", numRows))
 	}
 	numCols := length / numRows
 	matrix := make([][]string, numRows)
@@ -89,7 +89,7 @@ func ToMatrixString(row []string, numRows int) ([][]string, error) {
 func ToMatrixFloat64(row []float64, numRows int) ([][]float64, error) {
 	length := len(row)
 	if numRows <= 0 || length%numRows != 0 {
-		return nil, errors.New(fmt.Sprintf("divison of row to matrix not possible. Invalid numRows : %d ", numRows))
+		return nil, errors.New(fmt.Sprintf("division of row to matrix not possible. Invalid numRows : %d ", numRows))
 	}
 	numCols := length / numRows
 	matrix := make([][]float64, numRows)
