@@ -1,9 +1,22 @@
 package gotility
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
+
+func squareInt(arg int) int {
+	return arg * arg
+}
+
+func squareFloat64(arg float64) float64 {
+	return arg * arg
+}
+
+func squareString(arg string) string {
+	return arg + arg
+}
 
 func TestIsEmail(t *testing.T) {
 	isEmail := IsEmail("xyz@gmail.com")
@@ -67,5 +80,85 @@ func TestFlattenString(t *testing.T) {
 	row := FlattenString([][]string{{"A", "B"}, {"C", "D"}})
 	if !reflect.DeepEqual(row, []string{"A", "B", "C", "D"}) {
 		t.Error("Expected [A B C D], got ", row)
+	}
+}
+
+func TestSumInt(t *testing.T) {
+	sum := SumInt([]int{1, 2, 3})
+	if sum != 6 {
+		t.Error("Expected 6, got ", sum)
+	}
+}
+
+func TestSumFloat64(t *testing.T) {
+	sum := SumFloat64([]float64{1.1, 2.2, 3.3})
+	if sum != 6.6 {
+		t.Error("Expected 6.6 got ", sum)
+	}
+}
+
+func TestMapInt(t *testing.T) {
+	square := MapInt([]int{1, 2, 3}, squareInt)
+	if !reflect.DeepEqual(square, []int{1, 4, 9}) {
+		t.Error("Expected [1 4 9], got ", square)
+	}
+}
+
+func TestMapFloat64(t *testing.T) {
+	square := MapFloat64([]float64{1.1, 2.2, 3.3}, squareFloat64)
+	if !reflect.DeepEqual(square, []float64{1.2100000000000002, 4.840000000000001, 10.889999999999999}) {
+		t.Error("Expected 1.2100000000000002 4.840000000000001 10.889999999999999], got ", square)
+	}
+}
+
+func TestMapString(t *testing.T) {
+	square := MapString([]string{"A", "B", "C"}, squareString)
+	if !reflect.DeepEqual(square, []string{"AA", "BB", "CC"}) {
+		t.Error("Expected [AA BB CC], got ", square)
+	}
+}
+
+func TestToMatrixInt(t *testing.T) {
+	_, err := ToMatrixInt([]int{1, 2, 3, 4}, 0)
+	if err == nil {
+		t.Error("Expected ", fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", 0), ", got ", err)
+	}
+	_, err = ToMatrixInt([]int{1, 2, 3, 4}, 3)
+	if err == nil {
+		t.Error("Expected ", fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", 3), ", got ", err)
+	}
+	matrix, err := ToMatrixInt([]int{1, 2, 3, 4}, 2)
+	if !reflect.DeepEqual(matrix, [][]int{{1, 2}, {3, 4}}) {
+		t.Error("Expected [[1, 2] [3, 4]], got ", matrix)
+	}
+}
+
+func TestToMatrixFloat64(t *testing.T) {
+	_, err := ToMatrixFloat64([]float64{1.1, 2.2, 3.3, 4.4}, 0)
+	if err == nil {
+		t.Error("Expected ", fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", 0), ", got ", err)
+	}
+	_, err = ToMatrixFloat64([]float64{1.1, 2.2, 3.3, 4.4}, 3)
+	if err == nil {
+		t.Error("Expected ", fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", 3), ", got ", err)
+	}
+	matrix, err := ToMatrixFloat64([]float64{1.1, 2.2, 3.3, 4.4}, 2)
+	if !reflect.DeepEqual(matrix, [][]float64{{1.1, 2.2}, {3.3, 4.4}}) {
+		t.Error("Expected [[1.1, 2.2] [3.3, 4.4]], got ", matrix)
+	}
+}
+
+func TestToMatrixString(t *testing.T) {
+	_, err := ToMatrixString([]string{"A", "B", "C", "D"}, 0)
+	if err == nil {
+		t.Error("Expected ", fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", 0), ", got ", err)
+	}
+	_, err = ToMatrixString([]string{"A", "B", "C", "D"}, 3)
+	if err == nil {
+		t.Error("Expected ", fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", 3), ", got ", err)
+	}
+	matrix, err := ToMatrixString([]string{"A", "B", "C", "D"}, 2)
+	if !reflect.DeepEqual(matrix, [][]string{{"A", "B"}, {"C", "D"}}) {
+		t.Error("Expected [[A, B] [C, D]], got ", matrix)
 	}
 }
