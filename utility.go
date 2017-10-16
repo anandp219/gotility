@@ -140,7 +140,7 @@ func MapInt(row []int, fn func(int) int) []int {
 	return mappedValues
 }
 
-// MapInt takes an array of float64 values and a function to be applied on that value.
+// MapFloat64 takes an array of float64 values and a function to be applied on that value.
 // It returns an array with the mapped values
 func MapFloat64(row []float64, fn func(float64) float64) []float64 {
 	mappedValues := []float64{}
@@ -150,7 +150,7 @@ func MapFloat64(row []float64, fn func(float64) float64) []float64 {
 	return mappedValues
 }
 
-// MapInt takes an array of string and a function to be applied on that value.
+// MapString takes an array of string and a function to be applied on that value.
 // It returns an array with the mapped values
 func MapString(row []string, fn func(string) string) []string {
 	mappedValues := []string{}
