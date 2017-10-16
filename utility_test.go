@@ -1,8 +1,8 @@
 package gotility
 
 import (
-	"testing"
 	"reflect"
+	"testing"
 )
 
 func TestIsEmail(t *testing.T) {
