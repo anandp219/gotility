@@ -11,9 +11,9 @@ const (
 	// NUMBER_REGEX is the regex for real number
 	NUMBER_REGEX = "^[+-]?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([eE][+-]?[0-9]+)?$"
 	// EMAIL_REGEX is the regex for email
-	EMAIL_REGEX  = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+	EMAIL_REGEX = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
 	// URL_REGEX is the regex for url
-	URL_REGEX    = "^((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\\://)?(www.|[a-zA-Z0-9].)[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,6}(\\:[0-9]{1,5})*(/($|[a-zA-Z0-9\\.\\,\\;\\?\\'\\\\+&amp;%\\$#\\=~_\\-]+))*$"
+	URL_REGEX = "^((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\\://)?(www.|[a-zA-Z0-9].)[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,6}(\\:[0-9]{1,5})*(/($|[a-zA-Z0-9\\.\\,\\;\\?\\'\\\\+&amp;%\\$#\\=~_\\-]+))*$"
 )
 
 // IsNumber check whether the string is a number or not
@@ -72,7 +72,7 @@ func FlattenString(matrix [][]string) []string {
 func ToMatrixInt(row []int, numRows int) ([][]int, error) {
 	length := len(row)
 	if numRows <= 0 || length%numRows != 0 {
-		return nil, errors.New(fmt.Sprintf("division of row to matrix not possible. Invalid numRows : %d ", numRows))
+		return nil, fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", numRows)
 	}
 	numCols := length / numRows
 	matrix := make([][]int, numRows)
@@ -87,7 +87,7 @@ func ToMatrixInt(row []int, numRows int) ([][]int, error) {
 func ToMatrixString(row []string, numRows int) ([][]string, error) {
 	length := len(row)
 	if numRows <= 0 || length%numRows != 0 {
-		return nil, errors.New(fmt.Sprintf("division of row to matrix not possible. Invalid numRows : %d ", numRows))
+		return nil, fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", numRows)
 	}
 	numCols := length / numRows
 	matrix := make([][]string, numRows)
@@ -102,7 +102,7 @@ func ToMatrixString(row []string, numRows int) ([][]string, error) {
 func ToMatrixFloat64(row []float64, numRows int) ([][]float64, error) {
 	length := len(row)
 	if numRows <= 0 || length%numRows != 0 {
-		return nil, errors.New(fmt.Sprintf("division of row to matrix not possible. Invalid numRows : %d ", numRows))
+		return nil, fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", numRows)
 	}
 	numCols := length / numRows
 	matrix := make([][]float64, numRows)
