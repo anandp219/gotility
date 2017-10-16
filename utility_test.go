@@ -127,7 +127,7 @@ func TestToMatrixInt(t *testing.T) {
 	if err == nil {
 		t.Error("Expected ", fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", 3), ", got ", err)
 	}
-	matrix, err := ToMatrixInt([]int{1, 2, 3, 4}, 2)
+	matrix, _ := ToMatrixInt([]int{1, 2, 3, 4}, 2)
 	if !reflect.DeepEqual(matrix, [][]int{{1, 2}, {3, 4}}) {
 		t.Error("Expected [[1, 2] [3, 4]], got ", matrix)
 	}
@@ -142,7 +142,7 @@ func TestToMatrixFloat64(t *testing.T) {
 	if err == nil {
 		t.Error("Expected ", fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", 3), ", got ", err)
 	}
-	matrix, err := ToMatrixFloat64([]float64{1.1, 2.2, 3.3, 4.4}, 2)
+	matrix, _ := ToMatrixFloat64([]float64{1.1, 2.2, 3.3, 4.4}, 2)
 	if !reflect.DeepEqual(matrix, [][]float64{{1.1, 2.2}, {3.3, 4.4}}) {
 		t.Error("Expected [[1.1, 2.2] [3.3, 4.4]], got ", matrix)
 	}
@@ -157,7 +157,7 @@ func TestToMatrixString(t *testing.T) {
 	if err == nil {
 		t.Error("Expected ", fmt.Errorf("division of row to matrix not possible. Invalid numRows : %d ", 3), ", got ", err)
 	}
-	matrix, err := ToMatrixString([]string{"A", "B", "C", "D"}, 2)
+	matrix, _ := ToMatrixString([]string{"A", "B", "C", "D"}, 2)
 	if !reflect.DeepEqual(matrix, [][]string{{"A", "B"}, {"C", "D"}}) {
 		t.Error("Expected [[A, B] [C, D]], got ", matrix)
 	}
