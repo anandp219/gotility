@@ -30,8 +30,8 @@ IsNumber("a12134.0009") // false
 ### IsEmail
 
 ```
-IsEmail("anandp219@gmail.com")  // true
-IsEmail("anand@mail")           // false
+IsEmail("xyz@gmail.com")  // true
+IsEmail("mail")                 // false
 ```
 
 ### IsUrl
