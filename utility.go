@@ -1,7 +1,6 @@
 package gotility
 
 import (
-	"errors"
 	"fmt"
 	"regexp"
 	"strings"
@@ -111,4 +110,52 @@ func ToMatrixFloat64(row []float64, numRows int) ([][]float64, error) {
 		matrix[i] = append(matrix[i], row[index:index+numCols]...)
 	}
 	return matrix, nil
+}
+
+// SumInt returns the sum of an integer array
+func SumInt(row []int) int {
+	sum := 0
+	for _, value := range row {
+		sum += value
+	}
+	return sum
+}
+
+// SumFloat64 returns the sum of an floating point array array
+func SumFloat64(row []float64) float64 {
+	sum := 0.0
+	for _, value := range row {
+		sum += value
+	}
+	return sum
+}
+
+// MapInt takes an array of integer values and a function to be applied on that value.
+// It returns an array with the mapped values
+func MapInt(row []int, fn func(int) int) []int {
+	mappedValues := []int{}
+	for _, value := range row {
+		mappedValues = append(mappedValues, fn(value))
+	}
+	return mappedValues
+}
+
+// MapInt takes an array of float64 values and a function to be applied on that value.
+// It returns an array with the mapped values
+func MapFloat64(row []float64, fn func(float64) float64) []float64 {
+	mappedValues := []float64{}
+	for _, value := range row {
+		mappedValues = append(mappedValues, fn(value))
+	}
+	return mappedValues
+}
+
+// MapInt takes an array of string and a function to be applied on that value.
+// It returns an array with the mapped values
+func MapString(row []string, fn func(string) string) []string {
+	mappedValues := []string{}
+	for _, value := range row {
+		mappedValues = append(mappedValues, fn(value))
+	}
+	return mappedValues
 }
