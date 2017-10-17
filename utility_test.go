@@ -162,3 +162,27 @@ func TestToMatrixString(t *testing.T) {
 		t.Error("Expected [[A, B] [C, D]], got ", matrix)
 	}
 }
+
+func TestSum(t *testing.T) {
+	sum, _ := Sum([]int{1, 2, 3})
+	if sum != int64(6) {
+		t.Error("Expected 6 got ", sum)
+	}
+	sum, _ = Sum([]float64{1, 2, 3})
+	if sum != float64(6) {
+		t.Error("Expected 6 got ", sum)
+	}
+	sum, _ = Sum([]float64{0})
+	if sum != float64(0) {
+		t.Error("Expected 0 got ", sum)
+	}
+	_, err := Sum([]bool{true})
+	if err == nil {
+		t.Error("Expected ", fmt.Errorf("cannot sum the given slice"), " got <nil>")
+	}
+	_, err = Sum(2)
+	if err == nil {
+		t.Error("Expected ", "Expected slice, got: int ", " got <nil>")
+	}
+
+}

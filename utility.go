@@ -2,6 +2,7 @@ package gotility
 
 import (
 	"fmt"
+	"reflect"
 	"regexp"
 	"strings"
 )
@@ -158,4 +159,51 @@ func MapString(row []string, fn func(string) string) []string {
 		mappedValues = append(mappedValues, fn(value))
 	}
 	return mappedValues
+}
+
+func sumInt64(value reflect.Value) int64 {
+	sum := int64(0)
+	for i := 0; i < value.Len(); i += 1 {
+		sum += int64(value.Index(i).Int())
+	}
+	return sum
+}
+
+func sumFloat64(value reflect.Value) float64 {
+	sum := float64(0)
+	for i := 0; i < value.Len(); i += 1 {
+		sum += float64(value.Index(i).Float())
+	}
+	return sum
+}
+
+// Sum returns the sum of the slice
+func Sum(row interface{}) (interface{}, error) {
+
+	slice := reflect.ValueOf(row)
+	if slice.Type().Kind() != reflect.Slice {
+		return 0, fmt.Errorf("Expected slice, got: " + slice.Type().Kind().String())
+	}
+
+	if slice.Len() == 0 {
+		return 0, nil
+	}
+
+	switch slice.Index(0).Type().Kind() {
+	case reflect.Int:
+		return sumInt64(slice), nil
+	case reflect.Int8:
+		return sumInt64(slice), nil
+	case reflect.Int32:
+		return sumInt64(slice), nil
+	case reflect.Int64:
+		return sumInt64(slice), nil
+	case reflect.Float32:
+		return sumFloat64(slice), nil
+	case reflect.Float64:
+		return sumFloat64(slice), nil
+	default:
+		return 0, fmt.Errorf("cannot sum the given slice")
+	}
+
 }

@@ -137,6 +137,16 @@ func addSemicolon(arg string) string {
 MapString([]string{"a", "b",  "c"}, addSemicolon) // => [a; b; c;]
 ```
 
+### Sum
+
+* Find the sum for int, int8, int16, int32, int64, float32 and float64 data types
+* returns tuple `sum(int64, float64), Error`
+```
+Sum([]int{1, 2, 3}) // => 6, nil
+Sum([]float32{1, 2, 3.2}) // => 6.200000047683716, nil
+Sum([]bool{true}) // => 0, "cannot sum the given slice"
+```
+
 ## Suggestions
 
 * Suggestions and improvements are welcome.
