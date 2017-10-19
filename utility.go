@@ -207,3 +207,29 @@ func Sum(row interface{}) (interface{}, error) {
 	}
 
 }
+
+// FindIndex returns the first index of the element in the given slice and if not found returns -1
+func FindIndex(row interface{}, element interface{}) (int, error) {
+	slice := reflect.ValueOf(row)
+	if slice.Type().Kind() != reflect.Slice {
+		return -1, fmt.Errorf("Expected slice, got: " + slice.Type().Kind().String())
+	}
+
+	if slice.Len() == 0 {
+		return -1, nil
+	}
+
+	sliceElementType := slice.Index(0).Type().Kind()
+	elementType := reflect.ValueOf(element).Type().Kind()
+	if sliceElementType != elementType {
+		return -1, fmt.Errorf("Expected element to be " + sliceElementType.String() + ", got: " + elementType.String())
+	}
+
+	for i := 0; i < slice.Len(); i += 1 {
+		if reflect.DeepEqual(slice.Index(i).Interface(), element) {
+			return i, nil
+		}
+	}
+
+	return -1, nil
+}

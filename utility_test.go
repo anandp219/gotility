@@ -186,3 +186,34 @@ func TestSum(t *testing.T) {
 	}
 
 }
+
+func TestFindIndex(t *testing.T) {
+	_, err := FindIndex(6, 2)
+	if err == nil {
+		t.Error("Expected ", fmt.Errorf("expected slice, got: int"), ", got ", err)
+	}
+	_, err = FindIndex([]int{}, 2)
+	if err != nil {
+		t.Error("Expected nil got ", err)
+	}
+	_, err = FindIndex([]int{1, 2, 3}, "india")
+	if err == nil {
+		t.Error("Expected ", fmt.Errorf("Expected element to be int, got: string "), " got nil")
+	}
+	index, _ := FindIndex([]int{1, 2, 3}, 1)
+	if index != 0 {
+		t.Error("Expected index to be 0 got ", index)
+	}
+	index, _ = FindIndex([]float64{1, 2, 3}, 2.0)
+	if index != 1 {
+		t.Error("Expected index to be 1 got ", index)
+	}
+	index, _ = FindIndex([]string{"india", "is", "great"}, "great")
+	if index != 2 {
+		t.Error("Expected index to be 2 got ", index)
+	}
+	index, _ = FindIndex([]string{"india", "is", "great"}, "are")
+	if index != -1 {
+		t.Error("Expected index to be -1 got ", index)
+	}
+}
