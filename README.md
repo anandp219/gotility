@@ -162,9 +162,9 @@ FindIndex([]int{1, 2, 3}, 1.0) // => -1, Error("Mismatch type of elements")
 * Find the last occurrence of the element in the `slice`.
 * returns tuple `int, Error`
 ```
-FindIndex([]int{1, 2, 3}, 1) // => 0, nil
-FindIndex([]float64{1, 2, 3}, -1.0) // => -1, nil
-FindIndex([]int{1, 2, 3}, 1.0) // => -1, Error("Mismatch type of elements")
+FindLastIndex([]int{1, 2, 3, 1}, 1) // => 3, nil
+FindLastIndex([]float64{1, 2, 3}, -1.0) // => -1, nil
+FindLastIndex([]int{1, 2, 3}, 1.0) // => -1, Error("Mismatch type of elements")
 ```
 
 ## Suggestions
