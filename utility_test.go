@@ -217,3 +217,34 @@ func TestFindIndex(t *testing.T) {
 		t.Error("Expected index to be -1 got ", index)
 	}
 }
+
+func TestFindLastIndex(t *testing.T) {
+	_, err := FindLastIndex(6, 2)
+	if err == nil {
+		t.Error("Expected ", fmt.Errorf("expected slice, got: int"), ", got ", err)
+	}
+	_, err = FindLastIndex([]int{}, 2)
+	if err != nil {
+		t.Error("Expected nil got ", err)
+	}
+	_, err = FindLastIndex([]int{1, 2, 3}, "india")
+	if err == nil {
+		t.Error("Expected ", fmt.Errorf("Expected element to be int, got: string "), " got nil")
+	}
+	index, _ := FindLastIndex([]int{1, 2, 3, 1}, 1)
+	if index != 3 {
+		t.Error("Expected index to be 3 got ", index)
+	}
+	index, _ = FindLastIndex([]float64{1, 2, 3, 2, 2}, 2.0)
+	if index != 4 {
+		t.Error("Expected index to be 4 got ", index)
+	}
+	index, _ = FindLastIndex([]string{"great", "india", "is", "great"}, "great")
+	if index != 3 {
+		t.Error("Expected index to be 3 got ", index)
+	}
+	index, _ = FindLastIndex([]string{"india", "is", "great"}, "are")
+	if index != -1 {
+		t.Error("Expected index to be -1 got ", index)
+	}
+}
