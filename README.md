@@ -139,12 +139,32 @@ MapString([]string{"a", "b",  "c"}, addSemicolon) // => [a; b; c;]
 
 ### Sum
 
-* Find the sum for int, int8, int16, int32, int64, float32 and float64 data types
+* Find the sum of slice for int, int8, int16, int32, int64, float32 and float64 data types
 * returns tuple `sum(int64, float64), Error`
 ```
 Sum([]int{1, 2, 3}) // => 6, nil
 Sum([]float32{1, 2, 3.2}) // => 6.200000047683716, nil
 Sum([]bool{true}) // => 0, "cannot sum the given slice"
+```
+
+### FindIndex
+
+* Find the first occurrence of the element in the `slice`.
+* returns tuple `int, Error`
+```
+FindIndex([]int{1, 2, 3}, 1) // => 0, nil
+FindIndex([]float64{1, 2, 3}, -1.0) // => -1, nil
+FindIndex([]int{1, 2, 3}, 1.0) // => -1, Error("Mismatch type of elements")
+```
+
+### FindLastIndex
+
+* Find the last occurrence of the element in the `slice`.
+* returns tuple `int, Error`
+```
+FindIndex([]int{1, 2, 3}, 1) // => 0, nil
+FindIndex([]float64{1, 2, 3}, -1.0) // => -1, nil
+FindIndex([]int{1, 2, 3}, 1.0) // => -1, Error("Mismatch type of elements")
 ```
 
 ## Suggestions
