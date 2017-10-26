@@ -259,3 +259,33 @@ func FindLastIndex(row interface{}, element interface{}) (int, error) {
 
 	return -1, nil
 }
+
+// GetKeys returns the keys as an unordered slice of the given map
+func GetKeys(object interface{}) ([]interface{}, error) {
+	Map := reflect.ValueOf(object)
+	if Map.Type().Kind() != reflect.Map {
+		return nil, fmt.Errorf("Expected map, got: " + Map.Type().Kind().String())
+	}
+
+	Keys := Map.MapKeys()
+	KeysToReturn := []interface{}{}
+	for i := 0; i < len(Keys); i += 1 {
+		KeysToReturn = append(KeysToReturn, Keys[i].Interface())
+	}
+	return KeysToReturn, nil
+}
+
+// GetValues returns the values as an unordered slice of the given map
+func GetValues(object interface{}) ([]interface{}, error) {
+	Map := reflect.ValueOf(object)
+	if Map.Type().Kind() != reflect.Map {
+		return nil, fmt.Errorf("Expected map, got: " + Map.Type().Kind().String())
+	}
+
+	Keys := Map.MapKeys()
+	ValuesToReturn := []interface{}{}
+	for i := 0; i < len(Keys); i += 1 {
+		ValuesToReturn = append(ValuesToReturn, Map.MapIndex(Keys[i]).Interface())
+	}
+	return ValuesToReturn, nil
+}

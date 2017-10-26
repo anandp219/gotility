@@ -167,6 +167,25 @@ FindLastIndex([]float64{1, 2, 3}, -1.0) // => -1, nil
 FindLastIndex([]int{1, 2, 3}, 1.0) // => -1, Error("Mismatch type of elements")
 ```
 
+### GetKeys
+
+* Returns the keys as an unordered slice of the given map.
+* returns tuple `slice, Error`
+```
+GetKeys(map[string]string{"key1": "value1", "key2": "value2}) // => ["key1", "key2"], nil
+GetKeys(1) // => nil, Error("Expected map")
+```
+
+### GetValues
+
+* Returns the values as an unordered slice of the given map.
+* returns tuple `slice, Error`
+```
+GetValues(map[string]string{"key1": "value1", "key2": "value2}) // => ["value1", "value2"], nil
+GetValues(1) // => nil, Error("Expected map")
+```
+
+
 ## Suggestions
 
 * Suggestions and improvements are welcome.

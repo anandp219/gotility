@@ -248,3 +248,35 @@ func TestFindLastIndex(t *testing.T) {
 		t.Error("Expected index to be -1 got ", index)
 	}
 }
+
+func TestGetKeys(t *testing.T) {
+	var Map = make(map[string]string)
+	Map["key1"] = "Value1"
+	Map["key2"] = "Value2"
+	Map["key3"] = "Value3"
+	Keys, _ := GetKeys(Map)
+	expectedKeys := []string{"key1", "key2", "key3"}
+	if reflect.DeepEqual(Keys, expectedKeys) {
+		t.Error("Expected ",expectedKeys, " got ", Keys)
+	}
+	_, err := GetKeys(1)
+	if err == nil {
+		t.Error("Expected Error got nil")
+	}
+}
+
+func TestGetValues(t *testing.T) {
+	var Map = make(map[string]string)
+	Map["key1"] = "Value1"
+	Map["key2"] = "Value2"
+	Map["key3"] = "Value3"
+	Values, _ := GetValues(Map)
+	expectedValues := []string{"Value1", "Value2", "Value3"}
+	if reflect.DeepEqual(Values, expectedValues) {
+		t.Error("Expected ",expectedValues, " got ", Values)
+	}
+	_, err := GetValues(1)
+	if err == nil {
+		t.Error("Expected Error got nil")
+	}
+}
