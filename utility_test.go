@@ -257,7 +257,7 @@ func TestGetKeys(t *testing.T) {
 	Keys, _ := GetKeys(Map)
 	expectedKeys := []string{"key1", "key2", "key3"}
 	if reflect.DeepEqual(Keys, expectedKeys) {
-		t.Error("Expected ",expectedKeys, " got ", Keys)
+		t.Error("Expected ", expectedKeys, " got ", Keys)
 	}
 	_, err := GetKeys(1)
 	if err == nil {
@@ -273,7 +273,7 @@ func TestGetValues(t *testing.T) {
 	Values, _ := GetValues(Map)
 	expectedValues := []string{"Value1", "Value2", "Value3"}
 	if reflect.DeepEqual(Values, expectedValues) {
-		t.Error("Expected ",expectedValues, " got ", Values)
+		t.Error("Expected ", expectedValues, " got ", Values)
 	}
 	_, err := GetValues(1)
 	if err == nil {
